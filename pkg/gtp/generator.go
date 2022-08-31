@@ -2,13 +2,14 @@ package gtp
 
 import (
 	"crypto/rand"
-	"github.com/pkg/errors"
 	"math"
 	"net"
 	"time"
+
+	"github.com/pkg/errors"
 )
 
-func generateUint16UniformNumber() (uint16, error) {
+func generateUint16UniformDistributedNumber() (uint16, error) {
 	buf := []byte{0}
 	if _, _ = rand.Reader.Read(buf); err != nil {
 		return puzzle, errors.Wrap(err, "can't generate random bytes")
@@ -21,10 +22,12 @@ func generateUint16UniformNumber() (uint16, error) {
 type InitialPuzzle struct {
 	// TourLength is decided by the main server to adjust the puzzle difficulty.
 	// How many guided tours (count of round trips) will client have.
-	TourLength     uint8
-	ClientAddr     [4]byte
-	UnixEpochNanos time.Duration
+	TourLength   uint16        `msgpack:"L"`
+	NextGuideIdx uint16        `msgpack:"i1"`
+	UnixNanos    time.Duration `msgpack:"t0"`
 }
+
+func NewInitialPuzzle(clientAddr net.IP) InitialPuzzle
 
 type generator struct {
 	maxGuidesNum uint8
@@ -34,7 +37,7 @@ type generator struct {
 func (g generator) GetInitialPuzzle(clientAddr net.IP) (InitialPuzzle, error) {
 	puzzle := InitialPuzzle{}
 
-	tourLen, err := generateUint16UniformNumber()
+	tourLen, err := generateUint16UniformDistributedNumber()
 	if err != nil {
 		return puzzle, errors.Wrap(err, "can't get tour length for the next puzzle")
 	}
