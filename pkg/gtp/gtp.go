@@ -1,7 +1,7 @@
 // Package gtp (Guided Tour Puzzles) provides primitive data structures and
 // algorithms to operating with them.
 //
-// When a tour_guide suspects that it is under attack or its load is
+// When a guide suspects that it is under attack or its load is
 // above a certain threshold, it asks all clients to solve a puzzle
 // prior to receiving service. In the GTP protocol, the puzzle
 // is simply a tour that needs to be completed by the client

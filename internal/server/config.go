@@ -1,4 +1,4 @@
-package tour_guide
+package server
 
 type Config struct {
 	GuideIndex int `default:"0" required:"true"`
