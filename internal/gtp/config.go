@@ -1,6 +1,11 @@
-package server
+package gtp
 
-type Config struct {
+type GuideConfig struct {
+	// AESKey is a string with 32 ASCII characters len (AES-256 bit using)
+	AESKey string `required:"true"`
+}
+
+type ServerConfig struct {
 	// AESKey is a string with 32 ASCII characters len (AES-256 bit using)
 	AESKey string `required:"true"`
 	// MaxTourLen is the maximum tour length when the server switched in anti-DDOS mode

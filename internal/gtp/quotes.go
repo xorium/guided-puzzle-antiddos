@@ -1,4 +1,4 @@
-package server
+package gtp
 
 var Quotes = []string{
 	"Never be an insincere friend, never be manipulative, one day you will be discovered and lose everything",
