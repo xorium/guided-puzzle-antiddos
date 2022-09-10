@@ -4,12 +4,11 @@ import (
 	"context"
 	"encoding/binary"
 	"fmt"
+	"net"
+	"time"
 
 	"github.com/pkg/errors"
 	"github.com/vmihailenco/msgpack/v5"
-
-	"net"
-	"time"
 )
 
 type Client struct {

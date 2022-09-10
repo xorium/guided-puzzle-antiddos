@@ -1,4 +1,3 @@
 package gtp
 
-type ResourceServer struct {
-}
+type ResourceServer struct{}
