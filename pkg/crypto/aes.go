@@ -47,5 +47,6 @@ func DecryptAES(key []byte, ciphertext []byte) ([]byte, error) {
 	}
 
 	nonce, ciphertext := ciphertext[:nonceSize], ciphertext[nonceSize:]
+
 	return gcm.Open(nil, nonce, ciphertext, nil)
 }

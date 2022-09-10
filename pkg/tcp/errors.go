@@ -8,6 +8,7 @@ func (e ConnectionReadError) Error() string {
 	if e.Msg == "" {
 		return "connection read error"
 	}
+
 	return e.Msg
 }
 
@@ -19,6 +20,7 @@ func (e ConnectionWriteError) Error() string {
 	if e.Msg == "" {
 		return "connection write error"
 	}
+
 	return e.Msg
 }
 
@@ -30,6 +32,7 @@ func (e ConnectionEstablishingError) Error() string {
 	if e.Msg == "" {
 		return "connection establishing error"
 	}
+
 	return e.Msg
 }
 
@@ -41,5 +44,6 @@ func (e CodecError) Error() string {
 	if e.Msg == "" {
 		return "encoding/decoding error"
 	}
+
 	return e.Msg
 }

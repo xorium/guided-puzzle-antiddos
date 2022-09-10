@@ -14,5 +14,6 @@ func GenerateRandomUint16() (uint16, error) {
 	if _, err := rand.Reader.Read(buf); err != nil {
 		return 0, errors.Wrap(err, "can't generate random bytes")
 	}
+
 	return uint16(buf[0]) % math.MaxUint16, nil
 }

@@ -11,6 +11,8 @@ import (
 	"github.com/vmihailenco/msgpack/v5"
 )
 
+// Client is a TCP agent trying to get some resource from the server.
+// It can execute guided tour protocol if resource server asks for.
 type Client struct {
 	dialer net.Dialer
 	conn   net.Conn

@@ -22,6 +22,7 @@ func send(conn net.Conn, data []byte) error {
 		errMsg := fmt.Sprintf(
 			"can't receive %d bytes from %v", len(data), conn.RemoteAddr(),
 		)
+
 		return errors.Wrap(ConnectionWriteError{Msg: errMsg}, err.Error())
 	}
 
@@ -37,6 +38,7 @@ func receive(conn net.Conn, numOfBytes int) ([]byte, error) {
 		errMsg := fmt.Sprintf(
 			"can't receive %d bytes from %v", len(buf), conn.RemoteAddr(),
 		)
+
 		return nil, errors.Wrap(ConnectionReadError{Msg: errMsg}, err.Error())
 	}
 

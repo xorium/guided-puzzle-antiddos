@@ -25,10 +25,8 @@ func closeByTimeout(c net.Conn, timeout time.Duration) {
 // Server is a simple TCP server which accepts connections, passes them to the
 // handlers with timeout of handling.
 type Server struct {
-	// The maximum amount of time that handler allowed to work with connection.
-	handlingTimeout time.Duration
-	listenAddr      string
-	handler         func(conn net.Conn)
+	listenAddr string
+	handler    func(conn net.Conn)
 }
 
 // NewServer returns TCP server.
@@ -54,10 +52,11 @@ func (s *Server) Listen(timeout time.Duration) error {
 	}
 
 	l, err := net.Listen("tcp", s.listenAddr)
+	defer func() { _ = l.Close() }()
+
 	if err != nil {
 		return errors.Wrap(err, "can't start listening on "+s.listenAddr)
 	}
-	defer func() { _ = l.Close() }()
 
 	for {
 		conn, err := l.Accept()
