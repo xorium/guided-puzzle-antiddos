@@ -20,3 +20,4 @@
 
 # Project artifacts
 .env
+bin/
